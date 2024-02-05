@@ -61,7 +61,7 @@ class Coleta extends Model {
       },
     }, {
       sequelize,
-      modelName: 'Coleta',
+      modelName: 'Coleta', tableName: 'coletas'
     });
 
     return this;

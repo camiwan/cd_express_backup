@@ -55,7 +55,8 @@ class App {
     this.app.use('/login', loginRoutes);
     this.app.use('/admin', adminRoutes);
     this.app.use('/admin/usuario', usuarioRoutes);
-    this.app.use('/admin/entregador', entregadorRouter)
+    this.app.use('/admin/api/entregadores', entregadorRouter);
+    
   }
 
 }

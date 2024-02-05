@@ -21,8 +21,7 @@ class EntregadorController{
       });
       console.log(e)
 
-        // return res.status(400).json({
-        // errors: e.errors.map((err) => err.message )});
+        
     }
   }
 
@@ -103,7 +102,7 @@ class EntregadorController{
     } catch (e) {
       return res.status(400).json({
         errors: e.errors ? e.errors.map((err) => err.message) : ["Erro desconhecido ao excluir entregador."]
-       // errors: e.errors.map((err) => err.message )
+       
       });
     }
   }
@@ -115,7 +114,6 @@ class EntregadorController{
           error: ["Objeto entregador inválido"]
         });
       }
-
       const entregador = Entregador.create(req.body);
       return res.json({
         entregador_cadastrado: true,
@@ -124,7 +122,7 @@ class EntregadorController{
     } catch (e) {
       return res.status(400).json({
         errors: e.errors ? e.errors.map((err) => err.message) : ["Erro desconhecido ao cadastrar entregador."]
-       // errors: e.errors.map((err)=> err.message )
+       
       });
     }
   }     
