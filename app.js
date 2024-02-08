@@ -6,6 +6,7 @@ import './src/database';
 import express from 'express';
 import landingPageRoutes from './src/routes/landingPageRoutes';
 import adminRoutes from './src/routes/adminRoutes';
+import empresaRoutes from './src/routes/empresaRoutes'
 import loginRoutes from './src/routes/loginRoutes';
 import usuarioRoutes from './src/routes/usuarioRoutes';
 import entregadorRouter from './src/routes/entregadorRoutes'
@@ -13,8 +14,10 @@ import path from 'path';
 import flash from 'connect-flash';
 import csrf from 'csurf';
 import session from 'express-session';
+import { runInThisContext } from 'vm';
 
 const { middlewareGlobal, checkCsrfError, csrfMiddleware } = require('./src/middlewares/middleware');
+
 
 //import swaggerUi from 'swagger-ui-express';
 //import swaggerDocument from './swagger.json';
@@ -23,7 +26,7 @@ class App {
   constructor() {
     this.app = express();
     this.config();
-    this.middlewares();
+    //this.middlewares();
     this.routes();
   }
 
@@ -38,7 +41,9 @@ class App {
       secret:"secret_secret_secret",
       cookie: { secure: false, maxAge: 14400000 },
     }));
-    this.app.use(csrf());
+   //  this.app.use(csrf());
+    
+        
   }
 
   middlewares() {
@@ -46,7 +51,7 @@ class App {
     this.app.use(express.json());
     this.app.use(middlewareGlobal);
     this.app.use(checkCsrfError);
-    this.app.use(csrfMiddleware);
+    //this.app.use(csrfMiddleware);
   }
 
   routes() {
@@ -54,8 +59,13 @@ class App {
     this.app.use('/', landingPageRoutes);
     this.app.use('/login', loginRoutes);
     this.app.use('/admin', adminRoutes);
-    this.app.use('/admin/usuario', usuarioRoutes);
+
+    this.app.use('/admin/api/empresas', empresaRoutes );
+
+    this.app.use('/admin/api/usuarios', usuarioRoutes);
+
     this.app.use('/admin/api/entregadores', entregadorRouter);
+
     
   }
 

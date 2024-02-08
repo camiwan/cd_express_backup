@@ -24,7 +24,7 @@ export default class Empresa extends Model {
           },
         },
       },
-      cnpf: {
+      cnpj: {
         type: Sequelize.STRING,
         defaultValue: '',
         validade: {

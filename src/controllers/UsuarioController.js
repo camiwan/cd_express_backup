@@ -13,14 +13,23 @@ class UsuarioController{
 
       return res.json(usuarios);
     } catch (e) {
-        return res.status(400).json({
-          errors: e.errors.map((err) => err.message )});
+
+      return res.status(400).json({
+        errors: e.errors ? e.errors.map((err) => err.message) : ["Erro desconhecido ao buscar os dados no banco"]
+
+      });
+
+
+
+
+        // return res.status(400).json({
+        //   errors: e.errors.map((err) => err.message )});
     }
   }
 
   async show(req, res){
     try {
-
+        
       const { id } = req.params;
       if(!id){
         return res.status(400).json({
@@ -37,9 +46,14 @@ class UsuarioController{
 
       return res.json(usuario);
   } catch (e) {
+
     return res.status(400).json({
-      errors: e.errors.map((err)=> err.message )
+      errors: e.errors ? e.errors.map((err) => err.message) : ["Erro desconhecido ao buscar os dados no banco"]
+
     });
+    // return res.status(400).json({
+    //   errors: e.errors.map((err)=> err.message )
+    // });
     }
   }
 
@@ -63,9 +77,14 @@ class UsuarioController{
       return res.json(usuarioAtualizado);
 
     } catch (e) {
-      return res.status(400).json({
-        errors: e.errors.map((err) => err.message )
+
+        return res.status(400).json({
+        errors: e.errors ? e.errors.map((err) => err.message) : ["Erro desconhecido ao buscar os dados no banco"]
+
       });
+      // return res.status(400).json({
+      //   errors: e.errors.map((err) => err.message )
+      // });
     }
   }
 
@@ -92,8 +111,12 @@ class UsuarioController{
 
     } catch (e) {
       return res.status(400).json({
-        errors: e.errors.map((err) => err.message )
+        errors: e.errors ? e.errors.map((err) => err.message) : ["Erro desconhecido ao buscar os dados no banco"]
+
       });
+      // return res.status(400).json({
+      //   errors: e.errors.map((err) => err.message )
+      // });
     }
   }
 
@@ -111,9 +134,14 @@ class UsuarioController{
         usuario
       });
     } catch (e) {
-      return res.status(400).json({
-        errors: e.errors.map((err)=> err.message )
+      
+        return res.status(400).json({
+        errors: e.errors ? e.errors.map((err) => err.message) : ["Erro desconhecido ao buscar os dados no banco"]
+
       });
+      // return res.status(400).json({
+      //   errors: e.errors.map((err)=> err.message )
+      // });
     }
   }
 }

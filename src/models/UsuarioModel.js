@@ -33,20 +33,27 @@ export default class Usuario extends Model {
       password_hash: {
         type: Sequelize.STRING,
         defaultValue: '',
-      },
-      password: {
-        type: Sequelize.VIRTUAL,
-        defaultValue: '',
         validade: {
           len: {
-            args: [6, 50],
-            msg: 'A senha precisa ter entre 6 e 50 caracteres',
+            args: [3, 255],
+            msg: 'Campo senha deve ter entre 3 e 255 caracteres',
           },
         },
       },
-    }, {
+      // password: {
+      //   type: Sequelize.VIRTUAL,
+      //   defaultValue: '',
+      //   validade: {
+      //     len: {
+      //       args: [6, 50],
+      //       msg: 'A senha precisa ter entre 6 e 50 caracteres',
+      //     },
+      //   },
+      // },
+    }, 
+    {
       sequelize,
-      modelName: 'Usuario',
+      modelName: 'Usuario', tableName:'usuarios' 
     });
 
     this.addHook('beforeSave', async user =>{
