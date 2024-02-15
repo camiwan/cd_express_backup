@@ -4,18 +4,18 @@ class ColetaEntregador extends Model {
   static init(sequelize) {
     super.init({
       id_coleta: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT,
         defaultValue: 0,
       },
       id_entregador: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT,
         defaultValue: 0,
       },
       id_usuario: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT,
         defaultValue: 0,
       },
-      criadoEm: {
+      criado_em: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW,
       },

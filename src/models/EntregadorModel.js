@@ -1,8 +1,8 @@
 import Sequelize, { Model } from 'sequelize';
 
- export default class Entregador extends Model {
+export default class Entregador extends Model {
   static init(sequelize) {
-    super.init( {
+    super.init({
       nome: {
         type: Sequelize.STRING,
         defaultValue: '',
@@ -16,22 +16,24 @@ import Sequelize, { Model } from 'sequelize';
       email: {
         type: Sequelize.STRING,
         defaultValue: '',
-        allowNull: false,
+        unique:{
+          msg: 'E-mail já existe na base de dados'
+        },
         validate: {
           isEmail: {
             msg: 'E-mail inválido',
           },
         },
       },
-      telefone: {
+     telefone: {
         type: Sequelize.STRING,
         defaultValue: '',
       },
-      descricao: {
+     descricao:{
         type: Sequelize.STRING,
         defaultValue: '',
       },
-      criadoEm: {
+	  criado_em: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW,
       },
@@ -39,11 +41,10 @@ import Sequelize, { Model } from 'sequelize';
         type: Sequelize.TINYINT,
         defaultValue: true,
       },
-    }, {
+    },{
       sequelize,
-      modelName: 'Entregador', tableName: 'entregadores'
-    }
-    );
+      modelName: 'Entregador', tableName: 'entregadores',
+    });
 
     return this;
   }

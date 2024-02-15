@@ -9,7 +9,7 @@ const router = new Router();
 router.get('/', empresaController.index);
 router.get('/:id', empresaController.show);
 //router.post('/', empresaController.store);
-//router.put('/', empresaController.update);
-router.delete('/', empresaController.delete);
+//router.put('/:id', empresaController.update);
+router.delete('/:id', empresaController.delete);
 
 export default router;

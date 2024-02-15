@@ -7,7 +7,7 @@ export default class Usuario extends Model {
       nome: {
         type: Sequelize.STRING,
         defaultValue: '',
-        validade: {
+        validate: {
           len: {
             args: [3, 255],
             msg: 'Campo nome deve ter entre 3 e 255 caracteres',
@@ -20,51 +20,45 @@ export default class Usuario extends Model {
         unique:{
           msg: 'E-mail já existe na base de dados'
         },
-        validade: {
+        validate: {
           isEmail: {
             msg: 'E-mail inválido',
           },
         },
       },
-      tipo_acesso:{
+      tipo_de_acesso:{
         type: Sequelize.STRING,
         defaultValue: '',
       },
       password_hash: {
         type: Sequelize.STRING,
         defaultValue: '',
-        validade: {
+      },
+      password: {
+        type: Sequelize.VIRTUAL,
+        defaultValue:'',
+        validate: {
           len: {
-            args: [3, 255],
-            msg: 'Campo senha deve ter entre 3 e 255 caracteres',
+            args: [6, 8],
+            msg: 'A senha precisa ter entre 6 e 8 caracteres',
           },
         },
       },
-      // password: {
-      //   type: Sequelize.VIRTUAL,
-      //   defaultValue: '',
-      //   validade: {
-      //     len: {
-      //       args: [6, 50],
-      //       msg: 'A senha precisa ter entre 6 e 50 caracteres',
-      //     },
-      //   },
-      // },
-    }, 
+    },
     {
       sequelize,
-      modelName: 'Usuario', tableName:'usuarios' 
+      modelName: 'Usuario', tableName:'usuarios'
     });
 
-    this.addHook('beforeSave', async user =>{
-      if(user.password){
-        user.password_hash = await bcryptjs.hash(user.password, 8);
+    this.addHook('beforeSave', async (usuario) => {
+      if(usuario.password){
+        usuario.password_hash = await bcryptjs.hash(usuario.password, 8);
       }
-    })
+    });
     return this;
   }
   static associate(models) {
-    this.belongsTo(models.Empresa, {foreignKey: 'empresaId'});
+    this.belongsTo(models.Empresa, {foreignKey: 'empresa_id'});
 }
 
   passwordIsValid(password){

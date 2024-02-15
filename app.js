@@ -9,12 +9,14 @@ import adminRoutes from './src/routes/adminRoutes';
 import empresaRoutes from './src/routes/empresaRoutes'
 import loginRoutes from './src/routes/loginRoutes';
 import usuarioRoutes from './src/routes/usuarioRoutes';
-import entregadorRouter from './src/routes/entregadorRoutes'
+import entregadorRouter from './src/routes/entregadorRoutes';
+import coletaRouter from './src/routes/coletaRoutes';
 import path from 'path';
 import flash from 'connect-flash';
 import csrf from 'csurf';
 import session from 'express-session';
 import { runInThisContext } from 'vm';
+import ColetaController from './src/controllers/ColetaController';
 
 const { middlewareGlobal, checkCsrfError, csrfMiddleware } = require('./src/middlewares/middleware');
 
@@ -26,7 +28,7 @@ class App {
   constructor() {
     this.app = express();
     this.config();
-    //this.middlewares();
+    this.middlewares();
     this.routes();
   }
 
@@ -42,15 +44,15 @@ class App {
       cookie: { secure: false, maxAge: 14400000 },
     }));
    //  this.app.use(csrf());
-    
-        
+
+
   }
 
   middlewares() {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
-    this.app.use(middlewareGlobal);
-    this.app.use(checkCsrfError);
+    //this.app.use(middlewareGlobal);
+    //this.app.use(checkCsrfError);
     //this.app.use(csrfMiddleware);
   }
 
@@ -60,13 +62,12 @@ class App {
     this.app.use('/login', loginRoutes);
     this.app.use('/admin', adminRoutes);
 
-    this.app.use('/admin/api/empresas', empresaRoutes );
+    this.app.use('/admin/api/empresas/', empresaRoutes );
+    this.app.use('/admin/api/usuarios/', usuarioRoutes);
+    this.app.use('/admin/api/entregadores/', entregadorRouter);
+    this.app.use('/admin/api/coletas/', coletaRouter)
 
-    this.app.use('/admin/api/usuarios', usuarioRoutes);
 
-    this.app.use('/admin/api/entregadores', entregadorRouter);
-
-    
   }
 
 }

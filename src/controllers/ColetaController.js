@@ -1,20 +1,20 @@
-import Entregador from '../models/EntregadorModel';
+import Coleta from '../models/ColetaModel';
 
-class EntregadorController{
+class ColetaController{
 
   async index(req, res){
 
     try {
 
-      const entregadores = await Entregador.findAll();
-      console.log(entregadores);
+      const coletas = await Coleta.findAll();
+      console.log(coletas);
 
-      if(entregadores.length <= 0){
+      if(coletas.length <= 0){
         return res.status(400).json({
           errors: ["Nenhum registro encontrado"]
         })
       }
-      return res.json(entregadores);
+      return res.json(coletas);
     } catch (e) {
 
       return res.status(400).json({
@@ -33,14 +33,14 @@ class EntregadorController{
           errors: ["Parametro id não foi localizado"]
         });
       }
-      const entregador = await Entregador.findByPk(id);
-      if(!entregador){
+      const coleta = await Coleta.findByPk(id);
+      if(!coleta){
         return res.status(400).json({
           errors: ["Entregador não localizado"]
         });
       }
 
-      return res.json(entregador);
+      return res.json(coleta);
   } catch (e) {
     return res.status(400).json({
       errors: e.errors ? e.errors.map((err) => err.message) : ["Erro desconhecido ao buscar entregador."]
@@ -59,16 +59,16 @@ class EntregadorController{
        errors: ['Id não enviado']
        });
      }
-     const entregador = await Entregador.findByPk(req.params.id);
-     if(!entregador){
+     const coleta = await Coleta.findByPk(req.params.id);
+     if(!coleta){
        return res.status(400).json({
        errors: ['Dados não existe no db!']
        });
      }
 
 
-     const updateEntregador = await entregador.update(req.body);
-     return res.json(updateEntregador);
+     const updateColeta = await coletas.update(req.body);
+     return res.json(updateColeta);
 
     }catch(e){
 
@@ -88,22 +88,22 @@ class EntregadorController{
         });
       }
 
-      const entregador = await Entregador.findByPk(id);
+      const coleta = await Coleta.findByPk(id);
 
-      if(!entregador){
+      if(!coleta){
         return res.status(400).json({
           errors: ["Entregador não localizado"]
         });
       }
 
-      await entregador.destroy();
+      await coleta.destroy();
       return res.json({
-        entregador_apagado: true,
+        coleta_apagadoa: true,
       });
 
     } catch (e) {
       return res.status(400).json({
-        errors: e.errors ? e.errors.map((err) => err.message) : ["Erro desconhecido ao excluir entregador!"]
+        errors: e.errors ? e.errors.map((err) => err.message) : ["Erro desconhecido ao excluir entregador."]
       });
     }
   }
@@ -111,11 +111,11 @@ class EntregadorController{
   async store(req, res){
 
     try{
-      const creatEntregador = await Entregador.create(req.body);
-      res.json(creatEntregador);
+      const creatColeta = await Coleta.create(req.body);
+      res.json(creatColeta);
     }catch (e) {
       return res.status(400).json({
-        errors: e.errors ? e.errors.map((err) => err.message) : ["Erro desconhecido ao salvar entregador."]
+        errors: e.errors ? e.errors.map((err) => err.message) : ["Erro desconhecido ao salvar coleta."]
       });
     }
 
@@ -143,4 +143,4 @@ class EntregadorController{
 
 }
 
-export default new EntregadorController;
+export default new ColetaController;

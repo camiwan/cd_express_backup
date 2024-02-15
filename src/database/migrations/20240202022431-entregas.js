@@ -4,13 +4,14 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('entregas', {
       id: {
+        type: Sequelize.BIGINT,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+
       },
       id_coleta: {
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT
       },
       nome: {
         type: Sequelize.STRING

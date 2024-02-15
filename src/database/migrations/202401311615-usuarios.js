@@ -8,7 +8,7 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
-      empresaId: {
+      empresa_id: {
         type: Sequelize.BIGINT,
         allowNull: false,
         foreignKey: true,

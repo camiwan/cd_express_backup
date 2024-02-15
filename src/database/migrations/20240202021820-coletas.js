@@ -4,16 +4,17 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('coletas', {
       id: {
+        type: Sequelize.BIGINT,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+
       },
       id_empresa: {
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT
       },
       id_usuario: {
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT
       },
       nome: {
         type: Sequelize.STRING
@@ -39,7 +40,7 @@ module.exports = {
       cep: {
         type: Sequelize.STRING
       },
-      criadoEm: {
+      criado_em: {
         type: Sequelize.DATE
       },
       data_da_coleta: {
@@ -51,11 +52,11 @@ module.exports = {
       ativo: {
         type: Sequelize.BOOLEAN
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }

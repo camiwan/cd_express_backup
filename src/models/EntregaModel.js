@@ -47,19 +47,19 @@ class Entrega extends Model {
         type: Sequelize.DATE,
         defaultValue: null,
       },
-      criadoEm: {
+      criado_em: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW,
       },
-      valorEntrega: {
+      valor_entrega: {
         type: Sequelize.FLOAT,
         defaultValue: 0.0,
       },
-      valorEmpresa: {
+      valor_empresa: {
         type: Sequelize.FLOAT,
         defaultValue: 0.0,
       },
-      valorEntregador: {
+      valor_entregador: {
         type: Sequelize.FLOAT,
         defaultValue: 0.0,
       },

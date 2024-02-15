@@ -4,11 +4,11 @@ class Coleta extends Model {
   static init(sequelize) {
     super.init({
       id_empresa: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT,
         defaultValue: 0,
       },
       id_usuario: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT,
         defaultValue: 0,
       },
       nome: {
@@ -43,7 +43,7 @@ class Coleta extends Model {
         type: Sequelize.STRING,
         defaultValue: '',
       },
-      criadoEm: {
+      criado_em: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW,
       },

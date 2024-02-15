@@ -28,7 +28,7 @@ class EmpresaController{
 
   async show(req, res){
     try {
-     
+
       const { id } = req.params;
       if(!id){
         return res.status(400).json({
@@ -39,7 +39,7 @@ class EmpresaController{
       const empresa = await Empresa.findByPk(id);
       if(!empresa){
         return res.status(400).json({
-          errors: ["Entregador não localizado"]
+          errors: ["Empresa não localizada"]
         });
       }
 
@@ -47,7 +47,7 @@ class EmpresaController{
   } catch (e) {
     return res.status(400).json({
       errors: e.errors ? e.errors.map((err) => err.message) : ["Erro desconhecido ao buscar empresa."]
-      
+
     });
     }
   }// fim de show()
@@ -69,12 +69,36 @@ class EmpresaController{
   }
 
   async delete(req, res){
+
     try {
-      console.log("Delete");
 
-    } catch (error) {
+      const { id } = req.params;
 
+      if(!id){
+        return res.status(400).json({
+          error: ["Parametro id não foi localizado"]
+        });
+      }
+
+      const empresa = await Empresa.findByPk(id);
+
+      if(!empresa){
+        return res.status(400).json({
+          errors: ["Empresa não localizado"]
+        });
+      }
+
+      await empresa.destroy();
+      return res.json({
+        empresa_apagada: true,
+      });
+
+    } catch (e) {
+      return res.status(400).json({
+        errors: e.errors ? e.errors.map((err) => err.message) : ["Erro desconhecido ao excluir empresa."]
+      });
     }
+
   }
 
   async store(req, res){

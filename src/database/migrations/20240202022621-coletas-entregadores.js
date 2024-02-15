@@ -4,19 +4,20 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('coletasEntregadores', {
       id: {
+        type: Sequelize.BIGINT,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+
       },
       id_coleta: {
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT
       },
       id_entregador: {
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT
       },
       id_usuario: {
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT
       },
       criadoEm: {
         type: Sequelize.DATE
@@ -24,11 +25,11 @@ module.exports = {
       descricao: {
         type: Sequelize.STRING
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }

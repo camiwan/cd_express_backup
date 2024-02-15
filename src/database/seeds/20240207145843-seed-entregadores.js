@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    
+
     const quantidadeRegistros = 10;
 
     // Verifica se já existem registros de entregadores
@@ -22,7 +22,7 @@ module.exports = {
       email: `entregador${index + 1}@exemplo.com`,
       telefone: `123456789${index}`,
       descricao: `Descrição do entregador ${index + 1}`,
-      criadoEm: new Date(),
+      criado_em: new Date(),
       ativo: true,
     }));
 
@@ -31,15 +31,12 @@ module.exports = {
 
     console.log(`Seed de entregadores concluído. ${quantidadeRegistros} registros foram adicionados.`);
 
-    
+
   }, // fim de up
 
   async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+
+     await queryInterface.bulkDelete('Entregadores', null, {});
+
   }
 };
