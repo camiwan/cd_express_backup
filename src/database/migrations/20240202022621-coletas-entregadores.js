@@ -8,18 +8,41 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-
       },
-      id_coleta: {
-        type: Sequelize.BIGINT
+      coleta_id: {
+        type: Sequelize.BIGINT,
+        allowNull: false,
+        foreignKey: true,
+        references:{
+          model:{
+            tableName: 'coletas',
+          },
+          key: 'id'
+        }
       },
-      id_entregador: {
-        type: Sequelize.BIGINT
+      entregador_id: {
+        type: Sequelize.BIGINT,
+        allowNull: false,
+        foreignKey: true,
+        references:{
+          model:{
+            tableName: 'entregadores',
+          },
+          key: 'id'
+        }
       },
-      id_usuario: {
-        type: Sequelize.BIGINT
+      usuario_id: {
+        type: Sequelize.BIGINT,
+        allowNull: false,
+        foreignKey: true,
+        references:{
+          model:{
+            tableName: 'usuarios',
+          },
+          key: 'id'
+        }
       },
-      criadoEm: {
+      criado_em: {
         type: Sequelize.DATE
       },
       descricao: {

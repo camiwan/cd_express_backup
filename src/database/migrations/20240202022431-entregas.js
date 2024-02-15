@@ -8,10 +8,17 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-
       },
-      id_coleta: {
-        type: Sequelize.BIGINT
+      coleta_id: {
+        type: Sequelize.BIGINT,
+        allowNull: false,
+        foreignKey: true,
+        references: {
+          model:{
+            tableName: 'coletas',
+          },
+          key: 'id'
+        },
       },
       nome: {
         type: Sequelize.STRING
@@ -55,11 +62,11 @@ module.exports = {
       valorEntregador: {
         type: Sequelize.FLOAT
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }

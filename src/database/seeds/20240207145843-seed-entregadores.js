@@ -4,7 +4,7 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
 
-    const quantidadeRegistros = 10;
+    const quantidadeRegistros = 8;
 
     // Verifica se já existem registros de entregadores
     const entregadoresExistem = await queryInterface.sequelize.query(

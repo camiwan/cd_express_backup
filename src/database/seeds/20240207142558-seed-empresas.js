@@ -6,7 +6,7 @@ module.exports = {
     const empresasData = [];
 
     // Gerar dados para 10 empresas
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 5; i++) {
       empresasData.push({
         razao_social: `Empresa ${i + 1}`,
         nome_fantasia: `Empresa Fantasia ${i + 1}`,

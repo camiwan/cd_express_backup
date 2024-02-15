@@ -3,18 +3,6 @@ import Sequelize, { Model } from 'sequelize';
 class ColetaEntregador extends Model {
   static init(sequelize) {
     super.init({
-      id_coleta: {
-        type: Sequelize.BIGINT,
-        defaultValue: 0,
-      },
-      id_entregador: {
-        type: Sequelize.BIGINT,
-        defaultValue: 0,
-      },
-      id_usuario: {
-        type: Sequelize.BIGINT,
-        defaultValue: 0,
-      },
       criado_em: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW,
@@ -25,26 +13,21 @@ class ColetaEntregador extends Model {
       },
     }, {
       sequelize,
-      modelName: 'ColetaEntregador',
+      modelName: 'ColetaEntregador', tableName: 'coletasEntregadores',
     });
 
     return this;
   }
-
   static associate(models) {
     this.belongsTo(models.Coleta, {
-      foreignKey: 'id_coleta',
-      as: 'coleta',
+      foreignKey: 'coleta_id'
     });
 
     this.belongsTo(models.Entregador, {
-      foreignKey: 'id_entregador',
-      as: 'entregador',
+      foreignKey: 'entregador_id'
     });
-
     this.belongsTo(models.Usuario, {
-      foreignKey: 'id_usuario',
-      as: 'usuario',
+      foreignKey: 'usuario_id'
     });
   }
 }

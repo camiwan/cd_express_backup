@@ -3,14 +3,6 @@ import Sequelize, { Model } from 'sequelize';
 class Coleta extends Model {
   static init(sequelize) {
     super.init({
-      id_empresa: {
-        type: Sequelize.BIGINT,
-        defaultValue: 0,
-      },
-      id_usuario: {
-        type: Sequelize.BIGINT,
-        defaultValue: 0,
-      },
       nome: {
         type: Sequelize.STRING,
         defaultValue: '',
@@ -66,6 +58,14 @@ class Coleta extends Model {
 
     return this;
   }
+  static associate(models) {
+    this.belongsTo(models.Empresa, {foreignKey: 'empresa_id'});
+},
+  static associate(models) {
+    this.belongsTo(models.Usuario, {foreignKey: 'usuario_id'});
+}
+
+
 }
 
 export default Coleta;

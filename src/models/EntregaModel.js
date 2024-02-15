@@ -3,7 +3,7 @@ import Sequelize, { Model } from 'sequelize';
 class Entrega extends Model {
   static init(sequelize) {
     super.init({
-      id_coleta: {
+      coleta_id: {
         type: Sequelize.INTEGER,
         defaultValue: 0,
       },

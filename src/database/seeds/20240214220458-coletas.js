@@ -3,14 +3,19 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    // Array para armazenar os registros de coletas
+
+    const empresas = await queryInterface.sequelize.query('SELECT id FROM empresas;', { type: queryInterface.sequelize.QueryTypes.SELECT });
+
+    // const usuarios = await queryInterface.sequelize.query('SELECT id FROM usuarios;', { type: queryInterface.sequelize.QueryTypes.SELECT });
+
+
     const coletas = [];
 
     // Loop para criar 10 registros
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= 8; i++) {
       coletas.push({
-        id_empresa: i,
-        id_usuario: i,
+        empresa_id: i,
+        usuario_id: i,
         nome: `Coleta ${i}`,
         uf: `UF ${i}`,
         cidade: `Cidade ${i}`,
@@ -23,7 +28,7 @@ module.exports = {
         data_da_coleta: new Date(),
         descricao: `Descrição da Coleta ${i}`,
         ativo: true,
-        create_at: new Date(),
+        created_at: new Date(),
         update_at: new Date()
       });
     }

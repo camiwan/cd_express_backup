@@ -11,6 +11,7 @@ import loginRoutes from './src/routes/loginRoutes';
 import usuarioRoutes from './src/routes/usuarioRoutes';
 import entregadorRouter from './src/routes/entregadorRoutes';
 import coletaRouter from './src/routes/coletaRoutes';
+import coletaEntregadorRouter from './src/routes/coletaEntregadorRoutes';
 import path from 'path';
 import flash from 'connect-flash';
 import csrf from 'csurf';
@@ -65,7 +66,8 @@ class App {
     this.app.use('/admin/api/empresas/', empresaRoutes );
     this.app.use('/admin/api/usuarios/', usuarioRoutes);
     this.app.use('/admin/api/entregadores/', entregadorRouter);
-    this.app.use('/admin/api/coletas/', coletaRouter)
+    this.app.use('/admin/api/coletas/', coletaRouter);
+    this.app.use('/admin/api/coletas-entregadores/', coletaEntregadorRouter);
 
 
   }

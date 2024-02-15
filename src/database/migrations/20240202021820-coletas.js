@@ -8,46 +8,70 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-
       },
-      id_empresa: {
-        type: Sequelize.BIGINT
+      empresa_id: {
+        type: Sequelize.BIGINT,
+        allowNull: false,
+        foreignKey: true,
+        references: {
+          model:{
+          tableName: 'empresas',
+          },
+          key: 'id'
       },
-      id_usuario: {
-        type: Sequelize.BIGINT
+    },
+      usuario_id: {
+        type: Sequelize.BIGINT,
+        allowNull: false,
+        foreignKey: true,
+        references: {
+        model:{
+          tableName: 'usuarios',
+          },
+          key: 'id'
       },
+    },
       nome: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       uf: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       cidade: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       bairro: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       rua: {
         type: Sequelize.STRING
       },
       numero: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       complemento: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       cep: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       criado_em: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false,
       },
       data_da_coleta: {
         type: Sequelize.DATE
       },
       descricao: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       ativo: {
         type: Sequelize.BOOLEAN
@@ -56,7 +80,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updated_at: {
+      update_at: {
         allowNull: false,
         type: Sequelize.DATE
       }
