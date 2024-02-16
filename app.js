@@ -10,6 +10,7 @@ import empresaRoutes from './src/routes/empresaRoutes'
 import loginRoutes from './src/routes/loginRoutes';
 import usuarioRoutes from './src/routes/usuarioRoutes';
 import entregadorRouter from './src/routes/entregadorRoutes';
+import entregaRouter from './src/routes/entregaRoutes';
 import coletaRouter from './src/routes/coletaRoutes';
 import coletaEntregadorRouter from './src/routes/coletaEntregadorRoutes';
 import path from 'path';
@@ -66,6 +67,7 @@ class App {
     this.app.use('/admin/api/empresas/', empresaRoutes );
     this.app.use('/admin/api/usuarios/', usuarioRoutes);
     this.app.use('/admin/api/entregadores/', entregadorRouter);
+    this.app.use('/admin/api/entregas/', entregaRouter);
     this.app.use('/admin/api/coletas/', coletaRouter);
     this.app.use('/admin/api/coletas-entregadores/', coletaEntregadorRouter);
 

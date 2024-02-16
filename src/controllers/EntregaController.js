@@ -1,20 +1,20 @@
-import Coleta from '../models/ColetaModel';
+import Entrega from '../models/EntregaModel';
 
-class ColetaController{
+class EntregaController{
 
   async index(req, res){
 
     try {
 
-      const coletas = await Coleta.findAll();
-      console.log(coletas);
+      const entregas = await Entrega.findAll();
+      console.log(entregas);
 
-      if(coletas.length <= 0){
+      if(entregas.length <= 0){
         return res.status(400).json({
           errors: ["Nenhum registro encontrado"]
         })
       }
-      return res.json(coletas);
+      return res.json(entregas);
     } catch (e) {
 
       return res.status(400).json({
@@ -33,14 +33,14 @@ class ColetaController{
           errors: ["Parametro id não foi localizado"]
         });
       }
-      const coleta = await Coleta.findByPk(id);
-      if(!coleta){
+      const entrega = await Entrega.findByPk(id);
+      if(!entrega){
         return res.status(400).json({
           errors: ["Entregador não localizado"]
         });
       }
 
-      return res.json(coleta);
+      return res.json(entrega);
   } catch (e) {
     return res.status(400).json({
       errors: e.errors ? e.errors.map((err) => err.message) : ["Erro desconhecido ao buscar entregador."]
@@ -59,21 +59,16 @@ class ColetaController{
        errors: ['Id não enviado']
        });
      }
-     const coleta = await Coleta.findByPk(req.params.id);
-     if(!coleta){
+     const entrega = await Entrega.findByPk(req.params.id);
+     if(!entrega){
        return res.status(400).json({
        errors: ['Dados não existe no db!']
        });
      }
 
-     console.log(coleta)
 
-     console.log("Requisião: "+req.body)
-
-
-     const updateColeta = await coleta.update(req.body);
-
-     return res.json(updateColeta);
+     const updateEntrega = await entrega.update(req.body);
+     return res.json(updateEntrega);
 
     }catch(e){
 
@@ -84,31 +79,31 @@ class ColetaController{
    async delete(req, res){
 
     try {
+
       const { id } = req.params;
 
       if(!id){
         return res.status(400).json({
-          error: ["Id não foi localizado"]
+          error: ["Parametro id não foi localizado"]
         });
       }
 
-      const coleta = await Coleta.findByPk(id);
+      const entrega = await Entrega.findByPk(id);
 
-     // console.log("Coleta: "+coleta)
-
-      if(!coleta){
+      if(!entrega){
         return res.status(400).json({
-          errors: ["Coleta não localizada"]
+          errors: ["Entrega não localizada"]
         });
       }
-      await coleta.destroy();
+
+      await entrega.destroy();
       return res.json({
-        coleta_apagada: true,
+        entrega_apagada: true,
       });
 
     } catch (e) {
       return res.status(400).json({
-        errors: e.errors ? e.errors.map((err) => err.message) : ["Erro desconhecido ao excluir a coleta."]
+        errors: e.errors ? e.errors.map((err) => err.message) : ["Erro desconhecido ao excluir a entrega!"]
       });
     }
   }
@@ -116,14 +111,16 @@ class ColetaController{
   async store(req, res){
 
     try{
-      console.log("Requisição: "+req.body)
-
-      const creatColeta = await Coleta.create(req.body);
-
-      res.json(creatColeta);
+      if(!req.body){
+          return res.status(404).json({
+            error: ["Objeto entregador inválido"]
+            });
+          }
+      const creatEntrega = await Entrega.create(req.body);
+      res.json(creatEntrega);
     }catch (e) {
       return res.status(400).json({
-        errors: e.errors ? e.errors.map((err) => err.message) : ["Erro desconhecido ao salvar coleta."]
+        errors: e.errors ? e.errors.map((err) => err.message) : ["Erro desconhecido ao salvar entrega."]
       });
     }
 
@@ -151,4 +148,4 @@ class ColetaController{
 
 }
 
-export default new ColetaController;
+export default new EntregaController;

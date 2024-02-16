@@ -50,16 +50,16 @@ module.exports = {
       data_de_entrega: {
         type: Sequelize.DATE
       },
-      criadoEm: {
+      criado_em: {
         type: Sequelize.DATE
       },
-      valorEntrega: {
+      valor_entrega: {
         type: Sequelize.FLOAT
       },
-      valorEmpresa: {
+      valor_empresa: {
         type: Sequelize.FLOAT
       },
-      valorEntregador: {
+      valor_entregador: {
         type: Sequelize.FLOAT
       },
       created_at: {

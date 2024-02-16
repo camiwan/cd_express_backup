@@ -60,10 +60,12 @@ class Coleta extends Model {
   }
   static associate(models) {
     this.belongsTo(models.Empresa, {foreignKey: 'empresa_id'});
-},
-  static associate(models) {
     this.belongsTo(models.Usuario, {foreignKey: 'usuario_id'});
-}
+    
+},
+//   static associate(models) {
+//     this.belongsTo(models.Usuario, {foreignKey: 'usuario_id'});
+// }
 
 
 }

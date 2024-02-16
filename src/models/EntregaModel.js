@@ -4,7 +4,7 @@ class Entrega extends Model {
   static init(sequelize) {
     super.init({
       coleta_id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT,
         defaultValue: 0,
       },
       nome: {
@@ -65,7 +65,7 @@ class Entrega extends Model {
       },
     }, {
       sequelize,
-      modelName: 'Entrega',
+      modelName: 'Entrega', tableName: 'entregas',
     });
 
     return this;

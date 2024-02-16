@@ -6,7 +6,7 @@ module.exports = {
 
     const empresas = await queryInterface.sequelize.query('SELECT id FROM empresas;', { type: queryInterface.sequelize.QueryTypes.SELECT });
 
-    // const usuarios = await queryInterface.sequelize.query('SELECT id FROM usuarios;', { type: queryInterface.sequelize.QueryTypes.SELECT });
+    const usuarios = await queryInterface.sequelize.query('SELECT id FROM usuarios;', { type: queryInterface.sequelize.QueryTypes.SELECT });
 
 
     const coletas = [];
