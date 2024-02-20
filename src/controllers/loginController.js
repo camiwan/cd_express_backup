@@ -3,6 +3,7 @@ const path = require('path');
 class LoginController{
   index(req, res){
     try {
+      
       if(req.session.user) {
         return res.status(200).redirect('/admin/');
       }

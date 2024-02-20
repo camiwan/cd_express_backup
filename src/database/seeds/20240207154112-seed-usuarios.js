@@ -8,10 +8,12 @@ module.exports = {
     const empresas = await queryInterface.sequelize.query('SELECT id FROM empresas;', { type: queryInterface.sequelize.QueryTypes.SELECT });
 
     const usuarios = [];
+
     for (let i = 0; i < 4; i++) {
       usuarios.push({
         nome: `Usuário ${i + 1}`,
         email: `usuario${i + 1}@example.com`,
+        tipo_de_acesso: `usuario ${i}`,
         password_hash: await bcryptjs.hash(`senha${i + 1}`, 8),
         empresa_id: empresas[i % empresas.length].id, // Associa a empresa de acordo com o índice
         created_at: new Date(),

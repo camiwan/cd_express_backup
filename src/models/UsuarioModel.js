@@ -33,14 +33,15 @@ export default class Usuario extends Model {
       password_hash: {
         type: Sequelize.STRING,
         defaultValue: '',
+
       },
       password: {
         type: Sequelize.VIRTUAL,
         defaultValue:'',
         validate: {
           len: {
-            args: [6, 8],
-            msg: 'A senha precisa ter entre 6 e 8 caracteres',
+            args: [6, 50],
+            msg: 'A senha precisa ter entre 6 e 50 caracteres',
           },
         },
       },
@@ -49,6 +50,15 @@ export default class Usuario extends Model {
       sequelize,
       modelName: 'Usuario', tableName:'usuarios'
     });
+
+    // this.addHook('beforeSave', async (usuario) => {
+    //   // Limpa todos os campos do usuário
+    //   Object.keys(usuario).forEach(key => {
+    //     if (typeof usuario[key] === 'string') {
+    //       usuario[key] = usuario[key].trim(); // Remove espaços em branco no início e no final
+    //     }
+    //   });
+    // });
 
     this.addHook('beforeSave', async (usuario) => {
       if(usuario.password){
@@ -60,7 +70,6 @@ export default class Usuario extends Model {
   static associate(models) {
     this.belongsTo(models.Empresa, {foreignKey: 'empresa_id'});
 }
-
   passwordIsValid(password){
     return bcryptjs.compare(password, this.password_hash);
   }

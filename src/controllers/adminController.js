@@ -4,7 +4,7 @@ class AdminController {
   index(req, res){
     try {
       return res.status(200).render(path.resolve('src/views/admin/index'));
-     
+
     } catch (error) {
       return res.status(400).json({
         errors: error.errors.map(e => e.message)});
@@ -15,6 +15,7 @@ class AdminController {
     try {
       return res.status(200).render(path.resolve('src/views/admin/index'));
     } catch (error) {
+      console.log(error);
       return res.status(400).json({
         errors: error.errors.map(e => e.message)});
     }

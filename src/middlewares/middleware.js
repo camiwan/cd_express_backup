@@ -1,4 +1,5 @@
 const path = require('path');
+
 exports.middlewareGlobal = (req, res, next) => {
     res.locals.errors = req.flash('errors');
     res.locals.success = req.flash('success');
@@ -13,7 +14,8 @@ exports.middlewareGlobal = (req, res, next) => {
   exports.checkCsrfError = (err, req, res, next) => {
     if(err) {
       console.log(err);
-      return res.send('Mensagem do checkCsrfError: Token CSRF');
+      //return res.send('Mensagem do checkCsrfError: Token CSRF');
+      return res.render('pagina-erro');
     }
 
     next();
@@ -33,3 +35,4 @@ exports.middlewareGlobal = (req, res, next) => {
 
     next();
   }
+

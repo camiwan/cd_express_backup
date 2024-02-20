@@ -1,15 +1,17 @@
 
 const express = require('express');
 import entregadorController from '../controllers/EntregadorController';
+import loginRequired from '../middlewares/loginRequired';
 
 const router = express.Router();
 
 
 router.get('/', entregadorController.index);
 router.get('/:id', entregadorController.show);
-router.post('/', entregadorController.store);
-router.put('/:id', entregadorController.update);
-router.delete('/:id', entregadorController.delete);
+
+router.post('/',loginRequired, entregadorController.store);
+router.put('/:id',loginRequired, entregadorController.update);
+router.delete('/:id',loginRequired, entregadorController.delete);
 
 
 

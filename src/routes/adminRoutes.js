@@ -3,8 +3,12 @@ import adminController from '../controllers/adminController';
 
 const { loginRequired } = require('../middlewares/middleware');
 
-const router = new Router();
-router.get('/admin/', loginRequired, adminController.index);
+// const { loginRequired } = require('../middlewares/loginRequired'); /// was fez esse
+
+ const router = new Router();
+// router.get('/admin/', adminController.index);
+
+router.get('/', adminController.index);
 
 
 export default router;
